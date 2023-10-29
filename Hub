@@ -1,6 +1,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
-local AutoClick = false
+
+AutoClick = false
 
 function AutoClick()
     while AutoClick == true do
@@ -23,6 +24,7 @@ Tab:AddToggle({
 	Name = "Auto Click ( 1 seg )",
 	Default = false,
 	Callback = function(Value)
+		AutoClick = Value
 		AutoClick()
 	end
 })
@@ -31,6 +33,7 @@ Tab:AddToggle({
 	Name = "Auto Click ( 2 seg )",
 	Default = false,
 	Callback = function(Value)
+		AutoClick = Value
 		AutoClick()
 	end
 })
