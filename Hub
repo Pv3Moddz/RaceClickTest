@@ -28,6 +28,15 @@ Tab:AddToggle({
 	end
 })
 
+Tab:AddToggle({
+	Name = "Auto Click ( 2 seg )",
+	Default = false,
+	Callback = function(Value)
+		AutoClick = Value
+		AutoClick()
+	end
+})
+
 Tab:AddButton({
 	Name = "Fechar Menu!!",
 	Callback = function()
