@@ -1,0 +1,38 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
+local AutoClick = false
+
+function AutoClick()
+    while AutoClick == true do
+        game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
+        wait(1.0)
+    end
+end
+
+local Tab = Window:MakeTab({
+	Name = "RaceClick",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "CLICK SETTINGS"
+})
+
+Tab:AddToggle({
+	Name = "Auto Click ( 1 seg )",
+	Default = false,
+	Callback = function(Value)
+		AutoClick = Value
+		AutoClick()
+	end
+})
+
+Tab:AddButton({
+	Name = "Fechar Menu!!",
+	Callback = function()
+    	OrionLib:Destroy()
+  	end
+})
+
+OrionLib:Init()
