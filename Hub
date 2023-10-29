@@ -1,10 +1,10 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
 
-AutoClick = false
+_G.AutoClick = false
 
 function AutoClick()
-    while AutoClick == true do
+    while _G.AutoClick == true do
         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
         wait(1.0)
     end
@@ -24,16 +24,7 @@ Tab:AddToggle({
 	Name = "Auto Click ( 1 seg )",
 	Default = false,
 	Callback = function(Value)
-		AutoClick = Value
-		AutoClick()
-	end
-})
-
-Tab:AddToggle({
-	Name = "Auto Click ( 2 seg )",
-	Default = false,
-	Callback = function(Value)
-		AutoClick = Value
+		_G.AutoClick = Value
 		AutoClick()
 	end
 })
