@@ -29,11 +29,4 @@ Tab:AddToggle({
 	end
 })
 
-Tab:AddButton({
-	Name = "Fechar Menu!!",
-	Callback = function()
-    	OrionLib:Destroy()
-  	end
-})
-
 OrionLib:Init()
