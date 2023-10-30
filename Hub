@@ -27,7 +27,7 @@ Tab:AddSlider({
 	Max = 1,
 	Default = 1,
 	Color = Color3.fromRGB(255,255,255),
-	Increment = 0.1,
+	Increment = 1,
 	ValueName = "Seg",
 	Callback = function(Value)
 		_AutoClickValue = Value
