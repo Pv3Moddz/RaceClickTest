@@ -7,7 +7,9 @@ _AutoClickValue = 1
 function AutoClick()
     while _G.AutoClick == true do
         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-        wait(_AutoClickValue)
+        if (_AutoClickValue < 0) {
+            wait(_AutoClickValue)
+        }
     end
 end
 
@@ -27,7 +29,7 @@ Tab:AddSlider({
 	Max = 1000,
 	Default = 1000,
 	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
+	Increment = 10,
 	ValueName = "MilleSeg",
 	Callback = function(Value)
 		_AutoClickValue = Value / 1000
@@ -35,7 +37,7 @@ Tab:AddSlider({
 })
 
 Tab:AddToggle({
-	Name = "Auto Click ( 1 seg )",
+	Name = "Auto Click",
 	Default = false,
 	Callback = function(Value)
 		_G.AutoClick = Value
