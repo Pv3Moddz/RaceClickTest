@@ -2,7 +2,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
 
 _G.AutoClick = false
-_AutoClickValue = 1
+_AutoClickValue = 1000
 
 function AutoClick()
     while _G.AutoClick == true do
@@ -24,13 +24,13 @@ local Section = Tab:AddSection({
 Tab:AddSlider({
 	Name = "Delay Auto Click",
 	Min = 0,
-	Max = 1,
-	Default = 1,
+	Max = 1000,
+	Default = 1000,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
-	ValueName = "Seg",
+	ValueName = "MilleSeg",
 	Callback = function(Value)
-		_AutoClickValue = Value
+		_AutoClickValue = Value / 1000
 	end
 })
 
