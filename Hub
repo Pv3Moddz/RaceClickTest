@@ -1,14 +1,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
-
-_G.AutoClick = false
-_AutoClickValue = 1
-
-function AutoClick()
-    while _G.AutoClick == true do
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-    end
-end
+local lp = game:GetService("Players").LocalPlayer
+local LP = lp.Character.HumanoidRootPart
 
 local Tab = Window:MakeTab({
 	Name = "RaceClick",
@@ -37,8 +30,46 @@ Tab:AddToggle({
 	Name = "Auto Click",
 	Default = false,
 	Callback = function(Value)
-		_G.AutoClick = Value
-		AutoClick()
+		while Value == true do
+    		if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
+                game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
+                if _AutoClickValue < 0 then
+                    wait(_AutoClickValue)
+                end
+            end
+        end
+	end
+})
+
+local Section = Tab:AddSection({
+	Name = "WIN SETTINGS"
+})
+
+Tab:AddSlider({
+	Name = "Delay Auto Win",
+	Min = 0,
+	Max = 1000,
+	Default = 1000,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 10,
+	ValueName = "MilleSeg",
+	Callback = function(Value)
+		_AutoWinValue = Value / 1000
+	end
+})
+
+Tab:AddToggle({
+	Name = "Auto Win",
+	Default = false,
+	Callback = function(Value)
+        while Value == true do
+            if lp.PlayerGui.TimerUI.RaceTimer.Visible then
+                LP.CFrame = LP.CFrame + Vector.new(100000, 0, 0)
+                if _AutoClickValue < 0 then
+                    wait(_AutoWinValue)
+                end
+            end
+        end
 	end
 })
 
