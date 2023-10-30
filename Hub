@@ -7,9 +7,9 @@ _AutoClickValue = 1
 function AutoClick()
     while _G.AutoClick == true do
         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-        if (_AutoClickValue < 0) {
+        if _AutoClickValue < 0 do
             wait(_AutoClickValue)
-        }
+        end
     end
 end
 
