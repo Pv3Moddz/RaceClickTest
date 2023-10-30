@@ -3,8 +3,30 @@ local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false,
 local lp = game:GetService("Players").LocalPlayer
 local LP = lp.Character.HumanoidRootPart
 
+_G.AutoClick = false
 _AutoClickValue = 1
+_G.AutoWin = false
 _AutoWinValue = 1
+
+function AutoWin()
+    while _G.AutoWin == true do
+        if lp.PlayerGui.TimerUI.RaceTimer.Visible then
+            LP.CFrame = LP.CFrame + Vector.new(100000, 0, 0)
+            if _AutoClickValue < 0 then
+                wait(_AutoWinValue)
+            end
+        end
+    end
+end
+
+function AutoClick()
+    while _G.AutoClick == true do
+        game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
+        if _AutoClickValue < 0 then
+            wait(_AutoClickValue)
+        end
+    end
+end
 
 local Tab = Window:MakeTab({
 	Name = "RaceClick",
@@ -33,21 +55,13 @@ Tab:AddToggle({
 	Name = "Auto Click",
 	Default = false,
 	Callback = function(Value)
-	    if Value == true then
-    		while Value == true do
-        		if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
-                    game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-                    if _AutoClickValue < 0 then
-                        wait(_AutoClickValue)
-                    end
-                end
-            end
-        end
+		_G.AutoClick = Value
+		AutoClick()
 	end
 })
 
 local Section = Tab:AddSection({
-	Name = "WIN SETTINGS"
+	Name = "CLICK SETTINGS"
 })
 
 Tab:AddSlider({
@@ -67,16 +81,8 @@ Tab:AddToggle({
 	Name = "Auto Win",
 	Default = false,
 	Callback = function(Value)
-	    if Value == true then
-            while Value == true do
-                if lp.PlayerGui.TimerUI.RaceTimer.Visible then
-                    LP.CFrame = LP.CFrame + Vector.new(100000, 0, 0)
-                    if _AutoClickValue < 0 then
-                        wait(_AutoWinValue)
-                    end
-                end
-            end
-        end
+		_G.AutoWin = Value
+		AutoWin()
 	end
 })
 
