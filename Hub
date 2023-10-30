@@ -2,7 +2,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
 
 _G.AutoClick = false
-_AutoClickValue = 1000
+_AutoClickValue = 1
 
 function AutoClick()
     while _G.AutoClick == true do
