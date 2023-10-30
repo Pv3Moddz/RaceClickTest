@@ -3,6 +3,9 @@ local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false,
 local lp = game:GetService("Players").LocalPlayer
 local LP = lp.Character.HumanoidRootPart
 
+_AutoClickValue = 1
+_AutoWinValue = 1
+
 local Tab = Window:MakeTab({
 	Name = "RaceClick",
 	Icon = "rbxassetid://4483345998",
@@ -30,11 +33,13 @@ Tab:AddToggle({
 	Name = "Auto Click",
 	Default = false,
 	Callback = function(Value)
-		while Value == true do
-    		if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
-                game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-                if _AutoClickValue < 0 then
-                    wait(_AutoClickValue)
+	    if Value == true then
+    		while Value == true do
+        		if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
+                    game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
+                    if _AutoClickValue < 0 then
+                        wait(_AutoClickValue)
+                    end
                 end
             end
         end
@@ -62,11 +67,13 @@ Tab:AddToggle({
 	Name = "Auto Win",
 	Default = false,
 	Callback = function(Value)
-        while Value == true do
-            if lp.PlayerGui.TimerUI.RaceTimer.Visible then
-                LP.CFrame = LP.CFrame + Vector.new(100000, 0, 0)
-                if _AutoClickValue < 0 then
-                    wait(_AutoWinValue)
+	    if Value == true then
+            while Value == true do
+                if lp.PlayerGui.TimerUI.RaceTimer.Visible then
+                    LP.CFrame = LP.CFrame + Vector.new(100000, 0, 0)
+                    if _AutoClickValue < 0 then
+                        wait(_AutoWinValue)
+                    end
                 end
             end
         end
