@@ -3,26 +3,24 @@ local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false,
 local lp = game:GetService("Players").LocalPlayer
 local LP = lp.Character.HumanoidRootPart
 
-_G.AutoClick = false
+_AutoClick = false
 _AutoClickValue = 1
-_G.AutoWin = false
+_AutoWin = false
 _AutoWinValue = 1
 
 function AutoWin()
-    while _G.AutoWin == true do
+    while _AutoWin == true do
         if lp.PlayerGui.TimerUI.RaceTimer.Visible then
-            LP.CFrame = LP.CFrame + Vector.new(100000, 0, 0)
-            if _AutoClickValue < 0 then
-                wait(_AutoWinValue)
-            end
+            LP.CFrame = LP.CFrame + Vector.new(50000, 0, 0)
+            wait(_AutoWinValue)
         end
     end
 end
 
 function AutoClick()
-    while _G.AutoClick == true do
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-        if _AutoClickValue < 0 then
+    if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
+        while _AutoClick == true do
+            game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
             wait(_AutoClickValue)
         end
     end
@@ -55,13 +53,13 @@ Tab:AddToggle({
 	Name = "Auto Click",
 	Default = false,
 	Callback = function(Value)
-		_G.AutoClick = Value
+		_AutoClick = Value
 		AutoClick()
 	end
 })
 
 local Section = Tab:AddSection({
-	Name = "CLICK SETTINGS"
+	Name = "WIN SETTINGS"
 })
 
 Tab:AddSlider({
@@ -81,7 +79,7 @@ Tab:AddToggle({
 	Name = "Auto Win",
 	Default = false,
 	Callback = function(Value)
-		_G.AutoWin = Value
+		_AutoWin = Value
 		AutoWin()
 	end
 })
